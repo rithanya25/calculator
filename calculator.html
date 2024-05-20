@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        
+        .calculator {
+    width: 250px;
+    margin: 50px auto;
+    border: 1px ;
+    border-radius: 5px;
+    padding: 10px;
+  background-color: #41436a;
+}
+
+.display {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px ;
+    border-radius: 5px;
+    background-color: #fe9677;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+
+.buttons button {
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color:#f64668;
+}
+
+.buttons button:hover {
+    background-color: #984063;
+    transition: all 0.3s ease-in-out;
+}
+</style>
+</head>
+<body >
+    <div class="calculator">
+        <input type="text" class="display" disabled>
+        <div class="buttons">
+            <button onclick="Clear()">C</button>
+            <button onclick="Display('1')">1</button>
+            <button onclick="Display('2')">2</button>
+            <button onclick="Display('3')">3</button>
+            <button onclick="Display('+')">+</button>
+            <button onclick="Display('4')">4</button>
+            <button onclick="Display('5')">5</button>
+            <button onclick="Display('6')">6</button>
+            <button onclick="Display('-')">-</button>
+            <button onclick="Display('7')">7</button>
+            <button onclick="Display('8')">8</button>
+            <button onclick="Display('9')">9</button>
+            <button onclick="Display('*')">*</button>
+            <button onclick="Display('0')">0</button>
+            <button onclick="Display('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="Display('/')">/</button>
+        </div>
+    </div>
+ 
+</body>
+<script>
+    let displayValue = '';
+
+function Display(value) {
+    displayValue += value;
+    document.querySelector('.display').value = displayValue;
+}
+
+function Clear() {
+    displayValue = '';
+    document.querySelector('.display').value = '';
+}
+
+function calculate() {
+    try {
+        const result = eval(displayValue);
+        document.querySelector('.display').value = result;
+        displayValue = result.toString();
+    } catch (error) {
+        document.querySelector('.display').value = 'Error';
+    }
+}
+</script>
+</html>
